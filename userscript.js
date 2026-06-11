@@ -24,9 +24,6 @@
   const X_OFFSET = 8 + 11 * 16;
   const Z_OFFSET = 8 + 12 * 16;
 
-  /**
-   * all seeds disassembled by helix
-   */
   const SEEDS = {
     1: 2552571698694622912n,
     2: 6440098095557914520n,
@@ -54,6 +51,7 @@
   const slimeChunks = [];
   let wasmExports = null;
   let lastHash = "";
+  let lastWorldId = null;
   let timeout = null;
   let slimeVisible = false;
   let manualSeed = null;
@@ -89,23 +87,29 @@
       `Неизвестный мир (id: ${worldId}).\nВведите сид для этого мира:`,
     );
     if (input === null || input.trim() === "") {
-      disableSlime();
+      toggleSlime(false);
       return null;
     }
     try {
-      return BigInt(input.trim());
+      const seed = BigInt(input.trim());
+      manualSeed = seed;
+      return seed;
     } catch {
-      disableSlime();
+      toggleSlime(false);
       return null;
     }
   }
 
-  function disableSlime() {
-    slimeVisible = false;
-    const layer = document.getElementById("slime-layer");
-    if (layer) layer.remove();
+  function toggleSlime(visible) {
+    slimeVisible = visible;
     const ui = document.getElementById("slime-ui");
-    if (ui) ui.classList.remove("ui-checked");
+    if (ui) ui.classList.toggle("ui-checked", visible);
+    if (!visible) {
+      const layer = document.getElementById("slime-layer");
+      if (layer) layer.remove();
+    } else {
+      runSearch();
+    }
   }
 
   function runSearch() {
@@ -113,8 +117,12 @@
 
     const { x, z, worldId } = parseHash();
 
+    if (worldId !== lastWorldId) {
+      manualSeed = null;
+      lastWorldId = worldId;
+    }
+
     const seed = resolveSeed(worldId);
-    console.log(seed);
     if (seed === null) {
       console.warn("Сид не задан, поиск отменён.");
       return;
@@ -180,13 +188,7 @@
 
       title.addEventListener("click", function (e) {
         e.preventDefault();
-        slimeVisible = !slimeVisible;
-        button.toggleClass("ui-checked", slimeVisible);
-        if (slimeVisible) {
-          runSearch();
-        } else {
-          disableSlime();
-        }
+        toggleSlime(!slimeVisible);
       });
 
       addMoreUiElement(

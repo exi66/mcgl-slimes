@@ -1,17 +1,3 @@
-// ==UserScript==
-// @name         Слизневые чанки
-// @description  Предоставляет слой слизневых чанков на веб-карте проекта mcgl.ru
-// @match        *://map.minecraft-galaxy.ru/*
-// @grant        none
-// @namespace    https://github.com/exi66/mcgl-slimes
-// @author       exi66
-// @run-at       document-start
-// @grant        none
-// @license      MIT
-// @homepageURL  https://github.com/exi66/mcgl-slimes
-// @supportURL   https://github.com/exi66/mcgl-slimes/issues
-// ==/UserScript==
-
 (function () {
   ("use strict");
 

@@ -1,6 +1,5 @@
 {
   "name": "mcgl-slimes",
-  "version": "1.0.0",
   "description": "Tampermonkey userscript that overlays slime chunks on a Minecraft server map.",
   "scripts": {
     "build": "node ./build.js"

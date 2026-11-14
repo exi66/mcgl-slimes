@@ -1,0 +1,5 @@
+dist/
+package-lock.json
+# Генерируется test/reference/generate.js — форматирование задаёт Java-эталон.
+test/fixtures/
+test/reference/build/

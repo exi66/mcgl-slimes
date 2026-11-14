@@ -1,11 +1,24 @@
 {
   "name": "mcgl-slimes",
+  "private": true,
   "description": "Tampermonkey userscript that overlays slime chunks on a online server map.",
   "scripts": {
-    "build": "node ./build.js"
+    "build": "node ./build.js",
+    "test": "node --test",
+    "fixtures": "node test/reference/generate.js",
+    "lint": "eslint .",
+    "format": "prettier --write .",
+    "format:check": "prettier --check ."
   },
   "keywords": [],
   "author": "exi66",
   "license": "MIT",
-  "type": "module"
+  "type": "module",
+  "devDependencies": {
+    "@eslint/js": "^9.17.0",
+    "esbuild": "^0.24.2",
+    "eslint": "^9.17.0",
+    "globals": "^15.14.0",
+    "prettier": "^3.4.2"
+  }
 }

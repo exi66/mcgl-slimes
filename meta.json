@@ -9,6 +9,6 @@
   "license": "MIT",
   "homepageURL": "https://github.com/exi66/mcgl-slimes",
   "supportURL": "https://github.com/exi66/mcgl-slimes/issues",
-  "updateURL": "https://github.com/releases/latest/download/index.meta.js",
-  "downloadURL": "https://github.com/releases/latest/download/index.user.js"
+  "updateURL": "https://github.com/exi66/mcgl-slimes/releases/latest/download/index.meta.js",
+  "downloadURL": "https://github.com/exi66/mcgl-slimes/releases/latest/download/index.user.js"
 }
